@@ -41,11 +41,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR-NAME/dsh-gemini-image.git"
+    "url": "https://github.com/GentleBoyYC/DSH-connect-to-gemini-image.git"
   },
   "bugs": {
-    "url": "https://github.com/YOUR-NAME/dsh-gemini-image/issues"
+    "url": "https://github.com/GentleBoyYC/DSH-connect-to-gemini-image/issues"
   },
-  "homepage": "https://github.com/YOUR-NAME/dsh-gemini-image#readme",
+  "homepage": "https://github.com/GentleBoyYC/DSH-connect-to-gemini-image#readme",
   "license": "MIT"
 }

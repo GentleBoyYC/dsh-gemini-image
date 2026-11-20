@@ -19,7 +19,7 @@
 DSH 的插件以「bundle」形式装进 profile，从仓库本地目录安装即可：
 
 ```bash
-git clone https://github.com/YOUR-NAME/dsh-gemini-image.git
+git clone https://github.com/GentleBoyYC/DSH-connect-to-gemini-image.git
 ```
 
 然后在 DSH 里用 `plugin_manager` 装这个目录（或在 Agent 里说「把
