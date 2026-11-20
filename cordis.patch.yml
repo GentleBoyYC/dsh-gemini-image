@@ -1,0 +1,9 @@
+# gemini-image：把「用 Gemini 出图并下载到本地」注册成一个 DSH 工具。
+#
+# 默认 surface=bridge：浏览器扩展驱动你已登录的 Gemini 网页（推荐）。
+# 也可以 surface=web/app 让插件自己启动受控 Chrome（需要在那个窗口里登录）。
+# 扩展目录由插件在首次运行时生成到 $DSH_HOME/gemini-image/extension。
+- insert:
+    - id: gemini-image
+      name: 'dsh-gemini-image'
+      config: {}

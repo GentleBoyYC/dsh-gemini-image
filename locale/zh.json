@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Gemini 图片生成",
+    "description": "在受控的 Chrome 窗口里调用 Gemini 网页版生成图片，自动下载到本地目录，供后续读取与处理。"
+  }
+}

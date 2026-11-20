@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Gemini image generation",
+    "description": "Generates images in Gemini's web app through a controlled Chrome window and saves them to a local folder for follow-up processing."
+  }
+}

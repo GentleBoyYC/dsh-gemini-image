@@ -1,0 +1,51 @@
+{
+  "name": "dsh-gemini-image",
+  "version": "1.0.0",
+  "description": "DSH plugin: generate images with Gemini (browser-extension bridge or controlled Chrome) and save them locally.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib/*.js",
+    "extension/manifest.json",
+    "extension/background.js",
+    "extension/content.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin",
+    "gemini",
+    "image",
+    "image-generation"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR-NAME/dsh-gemini-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR-NAME/dsh-gemini-image/issues"
+  },
+  "homepage": "https://github.com/YOUR-NAME/dsh-gemini-image#readme",
+  "license": "MIT"
+}

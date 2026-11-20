@@ -1,0 +1,20 @@
+# 依赖与构建产物
+node_modules/
+pnpm-lock.yaml
+
+# 运行时生成（含本机桥接令牌，绝不能进仓库）
+extension/config.js
+bridge-token.txt
+runtime.json
+
+# 出图与调试产物
+gemini-images/
+*.webp
+*.png
+!icon.png
+
+# 日志与系统垃圾
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

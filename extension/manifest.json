@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "DSH Gemini Bridge",
+  "version": "0.1.0",
+  "description": "让 DSH 通过你已登录的 Gemini 网页生成图片，并把图片交回本地。",
+  "permissions": ["tabs", "storage", "scripting", "alarms"],
+  "host_permissions": [
+    "https://gemini.google.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://*.google.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "DSH Gemini Bridge（点开查看连接状态）"
+  }
+}

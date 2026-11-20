@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 语法检查
+        run: |
+          for f in index.js lib/*.js extension/background.js extension/content.js; do
+            node --check "$f"
+          done
+      - name: 工具注册与出入参自测
+        run: node scripts/logic.test.mjs
