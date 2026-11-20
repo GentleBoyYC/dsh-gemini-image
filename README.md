@@ -6,6 +6,14 @@
 字节取回来存成本地文件，再把路径返回给 DSH。之后的处理（`read_image` 看图、
 嵌进 PPT、当素材继续合成）就和本地图片完全一样。
 
+<p align="center">
+  <img src="docs/preview-cat-astronaut.jpg" width="34%" alt="提示词：戴宇航头盔的橘猫，赛博朋克霓虹街道" />
+  <img src="docs/preview-ink-mountain.jpg" width="56%" alt="提示词：水墨雪山与一叶孤舟，大量留白" />
+</p>
+<p align="center">
+  <sub>两张都是插件直接生成并落盘的原始结果（仅压缩尺寸）。共用时：单张约 20–35 秒。</sub>
+</p>
+
 支持三种取图方式，按可靠性排序：
 
 | surface | 用的是什么 | 需要登录 | 说明 |
