@@ -27,6 +27,10 @@
 分两步：**装插件**（DSH 这一侧）和**装浏览器扩展**（真正出图的那一端）。
 只用 `surface="web"` 受控浏览器模式的话，可以跳过第二步。
 
+> **TL;DR**　装插件 → `install_bundle` 指向 clone 下来的目录；
+> 装扩展 → 调 `gemini_image(action="status")` 拿到 `extensionDir`，在
+> `chrome://extensions` 加载它；验证 → 再调一次 `status` 看到「已连接」。
+
 ### 1. 装插件
 
 ```bash
