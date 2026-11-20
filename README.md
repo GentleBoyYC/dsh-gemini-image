@@ -24,48 +24,56 @@
 
 ## 安装
 
-DSH 的插件以「bundle」形式装进 profile，从仓库本地目录安装即可：
+分两步：**装插件**（DSH 这一侧）和**装浏览器扩展**（真正出图的那一端）。
+只用 `surface="web"` 受控浏览器模式的话，可以跳过第二步。
+
+### 1. 装插件
 
 ```bash
 git clone https://github.com/GentleBoyYC/DSH-connect-to-gemini-image.git
 ```
 
-然后在 DSH 里用 `plugin_manager` 装这个目录（或在 Agent 里说「把
+在 DSH 里用 `plugin_manager` 把这个目录装成 bundle（或在 Agent 里说「把
 `<clone 后的路径>` 作为 bundle 安装」）：
 
 ```jsonc
 { "action": "install_bundle", "target": "<clone 后的绝对路径>" }
 ```
 
-`install_bundle` 会把包 `link` 进 profile 并激活插件行，无需构建。
-装好后照下面的「快速开始」加载一次浏览器扩展即可开始出图。
+`install_bundle` 会把包 `link` 进 profile 并激活插件行，不需要构建。
 
-> 首次调用 `gemini_image` 时，插件会在 `$DSH_HOME/gemini-image/extension`
-> 生成带本机端口和令牌的扩展副本，加载那个目录（不是仓库里的 `extension/`）。
+### 2. 装浏览器扩展
 
-## 快速开始（surface = bridge）
+仓库里的 `extension/` **不能直接加载**——它缺少带本机端口和令牌的
+`config.js`。正确顺序是让插件先生成一份：
 
-1. 在 Chrome 或 Edge 里打开 `chrome://extensions`（Edge 是 `edge://extensions`）。
-2. 右上角打开「开发者模式」。
-3. 点「加载已解压的扩展程序」，选择：
+1. 在 DSH 里调用一次 `gemini_image(action="status")`。返回里会带
+   `extensionDir`，Windows 上通常就是：
 
    ```
    %USERPROFILE%\.dsh\gemini-image\extension
    ```
 
-   （工具返回的 `extensionDir` 就是这个目录）
-4. 打开/保留一个 `https://gemini.google.com` 标签页（已登录）。
-5. 调工具：
+2. 在 Chrome 或 Edge 打开 `chrome://extensions`（Edge 是 `edge://extensions`），
+   打开右上角「开发者模式」，点「加载已解压的扩展程序」，选择上面那个目录。
+3. 打开（或保留）一个已登录的 `https://gemini.google.com` 标签页。
+4. 再调一次 `gemini_image(action="status")`，看到「已连接」即可；扩展图标的
+   徽标变绿也表示连上了。
+
+> 平时不用管扩展。只有在插件升级、扩展代码变化、或端口/令牌变化时，才需要
+> 点扩展卡片上的刷新（↻）。
+
+## 出第一张图
 
 ```
-gemini_image(prompt="一只戴宇航服的橘猫，赛博朋克霓虹，竖构图", surface="bridge")
+gemini_image(prompt="一只戴宇航服的橘猫，赛博朋克霓虹，竖构图")
 ```
 
-图片默认存到当前工作目录下的 `gemini-images/`，返回值里带绝对路径、尺寸、
-字节数。
+`surface` 默认就是 `bridge`，不用写。图片默认存到当前工作目录下的
+`gemini-images/`，返回值里带绝对路径、尺寸和字节数。
 
-扩展图标上的徽标：**绿色** = 已连上插件；**红色 !** = 没连上（插件没运行，
-或者端口/令牌对不上，重新加载扩展即可）。
+扩展徽标：**绿色** = 已连上；**红色 !** = 没连上（插件没在运行，或者端口/
+令牌对不上，重新加载扩展即可）。
 
 ## 受控浏览器模式（surface = web / app）
 
@@ -180,11 +188,16 @@ lib/page.js           Gemini 页面自动化（CDP 版）
 lib/desktop.js        电脑版客户端后端（通常被客户端自身禁用）
 lib/session.js        从别的浏览器导入 cookie（app-bound 加密下多半无效）
 lib/settings.js       记住上次用的浏览器/目录
-extension/            浏览器扩展：manifest + 后台 + 内容脚本
+extension/            浏览器扩展**源码**（真正加载的是插件生成的副本）
+docs/                 README 预览图
 locale/*.json         插件管理器里的标题与描述
 icon.svg              插件图标
 cordis.patch.yml      插入 profile 的补丁行
 ```
+
+扩展的「可加载副本」在运行时生成，位置是
+`$DSH_HOME/gemini-image/extension`（Windows：`%USERPROFILE%\.dsh\gemini-image\extension`）。
+它比仓库里的多一个 `config.js`，里面有本机端口和随机令牌。
 
 ## 开发脚本（不属于发布内容）
 
