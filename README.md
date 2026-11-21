@@ -4,7 +4,7 @@
 
 插件注册一个工具 `gemini_image`：把提示词交给 Gemini，等图片画完，把原始
 字节取回来存成本地文件，再把路径返回给 DSH。之后的处理（`read_image` 看图、
-嵌进 PPT、当素材继续合成）就和本地图片完全一样。
+嵌进 PPT、当素材继续合成）就和本地图片完全一样。注意:为确保单张图片上下文纯净，该插件可能导致gemini产生大量会话！！！
 
 <p align="center">
   <img src="docs/preview-cat-astronaut.jpg" width="34%" alt="提示词：戴宇航头盔的橘猫，赛博朋克霓虹街道" />
